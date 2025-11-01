@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<company name="Tech Solutions" location="Pune" founded="2015">
+    <employees>
+        <employee id="1">
+            <name>Alice</name>
+            <role>QA Engineer</role>
+            <experience>3</experience>
+            <skills>
+                <skill>Selenium</skill>
+                <skill>Java</skill>
+                <skill>TestNG</skill>
+            </skills>
+        </employee>
+        <employee id="2">
+            <name>Bob</name>
+            <role>Developer</role>
+            <experience>5</experience>
+            <skills>
+                <skill>Java</skill>
+                <skill>Spring Boot</skill>
+                <skill>SQL</skill>
+            </skills>
+        </employee>
+        <employee id="3">
+            <name>Charlie</name>
+            <role>Project Manager</role>
+            <experience>8</experience>
+            <skills>
+                <skill>Agile</skill>
+                <skill>Scrum</skill>
+                <skill>Leadership</skill>
+            </skills>
+        </employee>
+    </employees>
+
+    <projects>
+        <project id="P101">
+            <name>Automation Framework</name>
+            <status>In Progress</status>
+            <teamSize>5</teamSize>
+        </project>
+        <project id="P102">
+            <name>E-commerce Website</name>
+            <status>Completed</status>
+            <teamSize>8</teamSize>
+        </project>
+    </projects>
+</company>
+

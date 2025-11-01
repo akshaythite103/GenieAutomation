@@ -1,0 +1,56 @@
+{
+    "employees": [
+        {
+            "id": 1,
+            "name": "Alice",
+            "role": "QA Engineer",
+            "experience": 3,
+            "skills": [
+                "Selenium",
+                "Java",
+                "TestNG"
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Bob",
+            "role": "Developer",
+            "experience": 5,
+            "skills": [
+                "Java",
+                "Spring Boot",
+                "SQL"
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Charlie",
+            "role": "Project Manager",
+            "experience": 8,
+            "skills": [
+                "Agile",
+                "Scrum",
+                "Leadership"
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "projectId": "P101",
+            "name": "Automation Framework",
+            "status": "In Progress",
+            "teamSize": 5
+        },
+        {
+            "projectId": "P102",
+            "name": "E-commerce Website",
+            "status": "Completed",
+            "teamSize": 8
+        }
+    ],
+    "company": {
+        "name": "Tech Solutions",
+        "location": "Pune",
+        "founded": 2015
+    }
+}
