@@ -23,6 +23,7 @@ public class GenieTests extends TestBase {
     loginPage = new LoginPage();
     loginPage.login();
     genieChatPage = new GenieChatPage();
+    genieChatPage.clickOnSkipIntroButton();
     genieChatPage.verifyGenieDashboard();
     userGuidePage = new UserGuidePage();
   }
@@ -1687,7 +1688,7 @@ public class GenieTests extends TestBase {
 
   @Test(groups = "smoke")
   public void verifyReadAloudUsinConsoleLog() {
-    genieChatPage.verifyReadAloudUsinConsoleLog();
+    genieChatPage.verifyReadAloudUsingConsoleLog();
   }
 
   //  @AfterMethod(groups = {"smoke", "fileUpload", "generateResponse", "regenerateResponse"})

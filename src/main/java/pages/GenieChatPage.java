@@ -92,7 +92,7 @@ public class GenieChatPage extends TestBase {
   WebElement kebabMenuIcon;
 
   @FindBy(css = "button.thread-modal-button")
-  WebElement renameThreadbutton;
+  WebElement renameThreadButton;
 
   @FindBy(css = "button.thread-modal-button.delete")
   WebElement deleteThreadButton;
@@ -158,10 +158,13 @@ public class GenieChatPage extends TestBase {
   WebElement gpt4oMiniVersion;
 
   @FindBy(xpath = "//span[text()='GPT-o3 mini']")
-  WebElement gpto3MiniVersion;
+  WebElement gpt_o3MiniVersion;
 
   @FindBy(xpath = "//img[@alt='Audio icon']")
   WebElement readAloudIcon;
+
+  @FindBy(css = "button[data-test-id='button-skip']")
+  WebElement skipIntroButton;
 
   public void verifyGenieDashboard() {
     WaitFor.time(3);
@@ -420,8 +423,8 @@ public class GenieChatPage extends TestBase {
 
   public void clickOnRename() {
     WaitFor.time(1);
-    WaitFor.elementToBeClickable(renameThreadbutton);
-    TestUtils.click(renameThreadbutton, "Clicked on the Rename thread button.");
+    WaitFor.elementToBeClickable(renameThreadButton);
+    TestUtils.click(renameThreadButton, "Clicked on the Rename thread button.");
   }
 
   public void clickOnDelete() {
@@ -1254,8 +1257,8 @@ public class GenieChatPage extends TestBase {
 
   public void selectGPTo3MiniVersion() {
     WaitFor.time(1);
-    WaitFor.elementToBeClickable(gpto3MiniVersion);
-    TestUtils.clickUsingJavaScriptExecutor(gpto3MiniVersion, "Clicked on the 'GPT-o3 mini'.");
+    WaitFor.elementToBeClickable(gpt_o3MiniVersion);
+    TestUtils.clickUsingJavaScriptExecutor(gpt_o3MiniVersion, "Clicked on the 'GPT-o3 mini'.");
   }
 
   public void generateResponseUsingGPT4o() {
@@ -1318,7 +1321,7 @@ public class GenieChatPage extends TestBase {
   public void generateResponseUsingGPTo3Mini() {
     WaitFor.time(1);
     clickOnModelDropdown();
-    String expectedSelectedVersion = gpto3MiniVersion.getText();
+    String expectedSelectedVersion = gpt_o3MiniVersion.getText();
     selectGPTo3MiniVersion();
     String question =
         "Can you create an automation framework using Selenium, java, testng, maven and pom?";
@@ -3208,36 +3211,40 @@ public class GenieChatPage extends TestBase {
 
   public void generateQueryForPdfFileUsingGpto3Mini() {
     WaitFor.time(1);
-    generateQueryForDocumentWithoutQuery(gpto3MiniVersion, baseDir + "/demo_test_files/sample.pdf");
+    generateQueryForDocumentWithoutQuery(
+        gpt_o3MiniVersion, baseDir + "/demo_test_files/sample.pdf");
   }
 
   public void generateQuestionForPdfFileUsingGpto3Mini() {
     WaitFor.time(1);
     generateQueryForDocument(
-        gpto3MiniVersion, baseDir + "/demo_test_files/sample.pdf", "What is this document about?");
+        gpt_o3MiniVersion, baseDir + "/demo_test_files/sample.pdf", "What is this document about?");
   }
 
   public void generateQueryForDocxFileUsingGpto3Mini() {
     WaitFor.time(1);
     generateQueryForDocumentWithoutQuery(
-        gpto3MiniVersion, baseDir + "/demo_test_files/sample.docx");
+        gpt_o3MiniVersion, baseDir + "/demo_test_files/sample.docx");
   }
 
   public void generateQuestionForDocxFileUsingGpto3Mini() {
     WaitFor.time(1);
     generateQueryForDocument(
-        gpto3MiniVersion, baseDir + "/demo_test_files/sample.docx", "What is this document about?");
+        gpt_o3MiniVersion,
+        baseDir + "/demo_test_files/sample.docx",
+        "What is this document about?");
   }
 
   public void generateQueryForTxtFileUsingGpto3Mini() {
     WaitFor.time(1);
-    generateQueryForDocumentWithoutQuery(gpto3MiniVersion, baseDir + "/demo_test_files/sample.txt");
+    generateQueryForDocumentWithoutQuery(
+        gpt_o3MiniVersion, baseDir + "/demo_test_files/sample.txt");
   }
 
   public void generateQuestionForTxtFileUsingGpto3Mini() {
     WaitFor.time(1);
     generateQueryForDocument(
-        gpto3MiniVersion,
+        gpt_o3MiniVersion,
         baseDir + "/demo_test_files/test_files/Selenium.txt",
         "What are the Key Components?");
   }
@@ -3245,13 +3252,13 @@ public class GenieChatPage extends TestBase {
   public void generateQueryForPptxFileUsingGpto3Mini() {
     WaitFor.time(1);
     generateQueryForDocumentWithoutQuery(
-        gpto3MiniVersion, baseDir + "/demo_test_files/sample.pptx");
+        gpt_o3MiniVersion, baseDir + "/demo_test_files/sample.pptx");
   }
 
   public void generateQuestionForPptxFileUsingGpto3Mini() {
     WaitFor.time(1);
     generateQueryForDocument(
-        gpto3MiniVersion,
+        gpt_o3MiniVersion,
         baseDir + "/demo_test_files/test_files/How_to_find_good_bugs.pptx",
         "What are the different areas that we do not test?");
   }
@@ -3259,26 +3266,27 @@ public class GenieChatPage extends TestBase {
   public void generateQueryForHtmlFileUsingGpto3Mini() {
     WaitFor.time(1);
     generateQueryForDocumentWithoutQuery(
-        gpto3MiniVersion, baseDir + "/demo_test_files/sample.html");
+        gpt_o3MiniVersion, baseDir + "/demo_test_files/sample.html");
   }
 
   public void generateQuestionForHtmlFileUsingGpto3Mini() {
     WaitFor.time(1);
     generateQueryForDocument(
-        gpto3MiniVersion,
+        gpt_o3MiniVersion,
         baseDir + "/demo_test_files/test_files/PlayWright.html",
         "how to check version?");
   }
 
   public void generateQueryForCsvFileUsingGpto3Mini() {
     WaitFor.time(1);
-    generateQueryForDocumentWithoutQuery(gpto3MiniVersion, baseDir + "/demo_test_files/sample.csv");
+    generateQueryForDocumentWithoutQuery(
+        gpt_o3MiniVersion, baseDir + "/demo_test_files/sample.csv");
   }
 
   public void generateQuestionForCsvFileUsingGpto3Mini() {
     WaitFor.time(1);
     generateQueryForDocument(
-        gpto3MiniVersion,
+        gpt_o3MiniVersion,
         baseDir + "/demo_test_files/test_files/test_data.csv",
         "What are the different countries?");
   }
@@ -3286,13 +3294,13 @@ public class GenieChatPage extends TestBase {
   public void generateQueryForXlsxFileUsingGpto3Mini() {
     WaitFor.time(1);
     generateQueryForDocumentWithoutQuery(
-        gpto3MiniVersion, baseDir + "/demo_test_files/sample.xlsx");
+        gpt_o3MiniVersion, baseDir + "/demo_test_files/sample.xlsx");
   }
 
   public void generateQuestionForXlsxFileUsingGpto3Mini() {
     WaitFor.time(1);
     generateQueryForDocument(
-        gpto3MiniVersion,
+        gpt_o3MiniVersion,
         baseDir + "/demo_test_files/test_files/test_data.xlsx",
         "What are the different countries?");
   }
@@ -3300,52 +3308,55 @@ public class GenieChatPage extends TestBase {
   public void generateQueryForJsonFileUsingGpto3Mini() {
     WaitFor.time(1);
     generateQueryForDocumentWithoutQuery(
-        gpto3MiniVersion, baseDir + "/demo_test_files/sample.json");
+        gpt_o3MiniVersion, baseDir + "/demo_test_files/sample.json");
   }
 
   public void generateQuestionForJsonFileUsingGpto3Mini() {
     WaitFor.time(1);
     generateQueryForDocument(
-        gpto3MiniVersion,
+        gpt_o3MiniVersion,
         baseDir + "/demo_test_files/test_files/sample_test_data.json",
         "What are the different roles?");
   }
 
   public void generateQueryForXmlFileUsingGpto3Mini() {
     WaitFor.time(1);
-    generateQueryForDocumentWithoutQuery(gpto3MiniVersion, baseDir + "/demo_test_files/sample.xml");
+    generateQueryForDocumentWithoutQuery(
+        gpt_o3MiniVersion, baseDir + "/demo_test_files/sample.xml");
   }
 
   public void generateQuestionForXmlFileUsingGpto3Mini() {
     WaitFor.time(1);
     generateQueryForDocument(
-        gpto3MiniVersion,
+        gpt_o3MiniVersion,
         baseDir + "/demo_test_files/test_files/test_data.xml",
         "What are the different tools?");
   }
 
   public void generateQueryForJpgFileUsingGpto3Mini() {
     WaitFor.time(1);
-    generateQueryForDocumentWithoutQuery(gpto3MiniVersion, baseDir + "/demo_test_files/sample.jpg");
+    generateQueryForDocumentWithoutQuery(
+        gpt_o3MiniVersion, baseDir + "/demo_test_files/sample.jpg");
   }
 
   public void generateQuestionForJpgFileUsingGpto3Mini() {
     WaitFor.time(1);
     generateQueryForDocument(
-        gpto3MiniVersion,
+        gpt_o3MiniVersion,
         baseDir + "/demo_test_files/test_files/test_file.jpg",
         "What is image about?");
   }
 
   public void generateQueryForPngFileUsingGpto3Mini() {
     WaitFor.time(1);
-    generateQueryForDocumentWithoutQuery(gpto3MiniVersion, baseDir + "/demo_test_files/sample.png");
+    generateQueryForDocumentWithoutQuery(
+        gpt_o3MiniVersion, baseDir + "/demo_test_files/sample.png");
   }
 
   public void generateQuestionForPngFileUsingGpto3Mini() {
     WaitFor.time(1);
     generateQueryForDocument(
-        gpto3MiniVersion,
+        gpt_o3MiniVersion,
         baseDir + "/demo_test_files/test_files/test_PNG.png",
         "Can you give the color palette used in the image?");
   }
@@ -3363,7 +3374,7 @@ public class GenieChatPage extends TestBase {
     String file8 = Paths.get(baseDir + "/demo_test_files/sample.txt").toAbsolutePath().toString();
     String file9 = Paths.get(baseDir + "/demo_test_files/sample.xlsx").toAbsolutePath().toString();
     generateQueryForDocument(
-        gpto3MiniVersion,
+        gpt_o3MiniVersion,
         file + "\n" + file1 + "\n" + file2 + "\n" + file3 + "\n" + file4 + "\n" + file5 + "\n"
             + file6 + "\n" + file7 + "\n" + file8 + "\n" + file9,
         "Summerise this documents.");
@@ -3382,7 +3393,7 @@ public class GenieChatPage extends TestBase {
     String file8 = Paths.get(baseDir + "/demo_test_files/sample.txt").toAbsolutePath().toString();
     String file9 = Paths.get(baseDir + "/demo_test_files/sample.xlsx").toAbsolutePath().toString();
     generateQueryForDocumentWithoutQuery(
-        gpto3MiniVersion,
+        gpt_o3MiniVersion,
         file + "\n" + file1 + "\n" + file2 + "\n" + file3 + "\n" + file4 + "\n" + file5 + "\n"
             + file6 + "\n" + file7 + "\n" + file8 + "\n" + file9);
   }
@@ -3395,7 +3406,7 @@ public class GenieChatPage extends TestBase {
     String file3 = Paths.get(baseDir + "/demo_test_files/sample.jpg").toAbsolutePath().toString();
     String file4 = Paths.get(baseDir + "/demo_test_files/sample.json").toAbsolutePath().toString();
     generateQueryForDocumentWithoutQuery(
-        gpto3MiniVersion, file + "\n" + file1 + "\n" + file2 + "\n" + file3 + "\n" + file4);
+        gpt_o3MiniVersion, file + "\n" + file1 + "\n" + file2 + "\n" + file3 + "\n" + file4);
   }
 
   public void generateQueryForFiveFilesWithQueryUsingGpto3Mini() {
@@ -3406,7 +3417,7 @@ public class GenieChatPage extends TestBase {
     String file3 = Paths.get(baseDir + "/demo_test_files/sample.txt").toAbsolutePath().toString();
     String file4 = Paths.get(baseDir + "/demo_test_files/sample.xlsx").toAbsolutePath().toString();
     generateQueryForDocument(
-        gpto3MiniVersion,
+        gpt_o3MiniVersion,
         file + "\n" + file1 + "\n" + file2 + "\n" + file3 + "\n" + file4,
         "Summerise this documents.");
   }
@@ -3634,7 +3645,7 @@ public class GenieChatPage extends TestBase {
     js.executeScript("window.speechSynthesis.cancel();");
   }
 
-  public void verifyReadAloudUsinConsoleLog() {
+  public void verifyReadAloudUsingConsoleLog() {
     WaitFor.time(1);
     enterQueryInSearchBox("How you can help me?");
     verifyResponse();
@@ -3659,5 +3670,11 @@ public class GenieChatPage extends TestBase {
       System.out.println("❌ Read Aloud did not working.");
       Assert.fail();
     }
+  }
+
+  public void clickOnSkipIntroButton() {
+    WaitFor.time(1);
+    WaitFor.elementToBeClickable(skipIntroButton);
+    TestUtils.clickUsingJavaScriptExecutor(skipIntroButton, "Clicked on the 'Skip' intro button.");
   }
 }

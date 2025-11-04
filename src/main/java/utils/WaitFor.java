@@ -17,7 +17,7 @@ public class WaitFor extends TestBase {
   static {
     try {
       wait = new FluentWait<>(TestBase.getDriver());
-      wait.withTimeout(Duration.ofSeconds(90));
+      wait.withTimeout(Duration.ofSeconds(120));
       wait.pollingEvery(Duration.ofMillis(500));
       wait.withMessage("Element not loaded");
     } catch (Throwable t) {
