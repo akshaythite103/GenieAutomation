@@ -1,4 +1,4 @@
-name: Java CI with Maven - Run Automation Suite with Allure Report & Environment Support by group
+name: Java CI with Maven - Run Automation Suite with Allure Report & Environment Support
 
 on:
   workflow_dispatch:
