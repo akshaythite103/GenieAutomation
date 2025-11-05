@@ -8,6 +8,23 @@
     <artifactId>UPL_Genie_Automation</artifactId>
     <version>1.0.0</version>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <base.url>https://dev.uplgenie.upl-ltd.com/</base.url>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <properties>
+                <base.url>https://uplgenie.upl-ltd.com/</base.url>
+            </properties>
+        </profile>
+    </profiles>
+
+
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>

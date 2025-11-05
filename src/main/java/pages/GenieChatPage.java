@@ -206,7 +206,7 @@ public class GenieChatPage extends TestBase {
     WaitFor.elementToBeClickable(userGuide);
     TestUtils.click(userGuide, "Clicked on the user guide.");
     WaitFor.time(2);
-    String[] expected = {"Video Tutorials"};
+    String[] expected = {"Interface Tour", "Video Tutorials"};
     String[] actual = new String[expected.length];
     List<WebElement> settingsMenus =
         TestBase.getDriver().findElements(By.cssSelector("div.dropdown-item-settings"));

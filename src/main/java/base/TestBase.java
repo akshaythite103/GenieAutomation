@@ -55,9 +55,14 @@ public class TestBase {
       WebDriver localDriver = new ChromeDriver(options);
       driver.set(localDriver);
       localDriver.manage().deleteAllCookies();
-      localDriver.get(Environment.prodUrl);
+      //      localDriver.get(Environment.devUrl);
+
       //      localDriver.get(System.getProperty("url"));
       // Only for Jenkins Uncomment the above line and add the respective script in the jenkins
+
+      localDriver.get(System.getProperty("base.url"));
+      // Only for GitHub Actions Uncomment the above line and add the respective script in the
+      // pom.xml and .github/workflows/maven.yml
       WaitFor.time(5);
     }
   }
