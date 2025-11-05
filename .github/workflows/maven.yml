@@ -16,6 +16,9 @@ on:
         required: true
         default: "smoke"
 
+permissions:
+  contents: write   # ✅ REQUIRED for pushing to gh-pages
+
 jobs:
   build:
     runs-on: ubuntu-latest
