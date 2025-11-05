@@ -23,7 +23,7 @@ public class GenieTests extends TestBase {
     loginPage = new LoginPage();
     loginPage.login();
     genieChatPage = new GenieChatPage();
-    genieChatPage.clickOnSkipIntroButton();
+    //    genieChatPage.clickOnSkipIntroButton();
     genieChatPage.verifyGenieDashboard();
     userGuidePage = new UserGuidePage();
   }
@@ -148,6 +148,7 @@ public class GenieTests extends TestBase {
   @Test(groups = "smoke")
   public void verifyBackButton() {
     genieChatPage.clickOnUserGuide();
+    genieChatPage.clickOnVideoTutorialsOption();
     userGuidePage.clickOnBackButton();
   }
 

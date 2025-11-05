@@ -82,14 +82,23 @@ public class LoginPage extends TestBase {
     Assert.assertEquals(actual, expected);
   }
 
+  public boolean isLogoPresent() {
+    WaitFor.time(1);
+    List<WebElement> logo = TestBase.getDriver().findElements(By.cssSelector("img.logo-image"));
+    return !logo.isEmpty();
+  }
+
   public void login() {
     WaitFor.time(1);
     if (isLogInButtonPresent()) clickOnLoginButton();
-    enterUsername(Environment.username);
-    clickOnNextButton();
-    enterPassword(Environment.password);
-    clickOnNextButton();
+    if (!isLogoPresent()) {
+      enterUsername(Environment.username);
+      clickOnNextButton();
+      enterPassword(Environment.password);
+      clickOnNextButton();
+      WaitFor.time(2);
+      verifyLoginSuccessToaster();
+    }
     WaitFor.elementToBeClickable(uplGenieLogo);
-    verifyLoginSuccessToaster();
   }
 }

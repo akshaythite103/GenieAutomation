@@ -106,10 +106,10 @@ public class GenieChatPage extends TestBase {
   @FindBy(css = "div.message-content p")
   WebElement query;
 
-  @FindBy(xpath = "//div[text()='Model Selection Guide']")
+  @FindBy(xpath = "//span[text()='Model Selection Guide']")
   WebElement modelSelectionGuide;
 
-  @FindBy(xpath = "//div[text()='AI Usage Policy']")
+  @FindBy(xpath = "//span[text()='AI Usage Policy']")
   WebElement aiUsagePolicy;
 
   @FindBy(css = "button.submit-policy-btn")
@@ -121,7 +121,9 @@ public class GenieChatPage extends TestBase {
   @FindBy(css = "button.output-arrow")
   WebElement sendIcon;
 
-  @FindBy(css = "div.suggestion-title")
+  @FindBy(
+      xpath =
+          "//div[@class='feedback-buttons']/following-sibling::div//div[text()='Explore further']")
   WebElement exploreFurtherSection;
 
   @FindBy(css = "div.spinner")
@@ -166,6 +168,9 @@ public class GenieChatPage extends TestBase {
   @FindBy(css = "button[data-test-id='button-skip']")
   WebElement skipIntroButton;
 
+  @FindBy(xpath = "//span[text()='Video Tutorials']")
+  WebElement videoTutorials;
+
   public void verifyGenieDashboard() {
     WaitFor.time(3);
     TestUtils.isDisplayed(addNewChatButton, "'New Chat' button is displayed.");
@@ -201,6 +206,20 @@ public class GenieChatPage extends TestBase {
     WaitFor.elementToBeClickable(userGuide);
     TestUtils.click(userGuide, "Clicked on the user guide.");
     WaitFor.time(2);
+    String[] expected = {"Video Tutorials"};
+    String[] actual = new String[expected.length];
+    List<WebElement> settingsMenus =
+        TestBase.getDriver().findElements(By.cssSelector("div.dropdown-item-settings"));
+    for (int i = 0; i < expected.length; i++) {
+      actual[i] = settingsMenus.get(i).getText();
+    }
+    assertEquals(actual, expected);
+  }
+
+  public void clickOnVideoTutorialsOption() {
+    WaitFor.time(1);
+    WaitFor.elementToBeClickable(videoTutorials);
+    TestUtils.click(videoTutorials, "Clicked on 'Video Tutorials.");
     String currentUrl = TestBase.getDriver().getCurrentUrl();
     assert currentUrl != null;
     TestUtils.currentUrlAssertion(currentUrl, "user-guide");

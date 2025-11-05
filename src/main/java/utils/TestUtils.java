@@ -24,7 +24,6 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import ru.yandex.qatools.ashot.AShot;
@@ -130,8 +129,7 @@ public class TestUtils {
   }
 
   public static void isEnabled(WebElement element, String msg) {
-    FluentWait<WebDriver> wait = new FluentWait<>(TestBase.getDriver());
-    wait.ignoring(NoSuchElementException.class);
+    WaitFor.elementToBePresent(element);
     boolean isPresent = element.isDisplayed();
     if (!isPresent) {
       LogUtils.info("Element is not enabled in given time.");
@@ -141,8 +139,7 @@ public class TestUtils {
   }
 
   public static void isDisplayed(WebElement element, String msg) {
-    WebDriverWait wait = new WebDriverWait(TestBase.getDriver(), Duration.ofSeconds(90));
-    wait.until(ExpectedConditions.elementToBeClickable(element));
+    WaitFor.elementToBeClickable(element);
     element.isDisplayed();
     LogUtils.info(msg);
   }
@@ -186,8 +183,7 @@ public class TestUtils {
   }
 
   public static boolean isDisabled(WebElement element) {
-    FluentWait<WebDriver> wait = new FluentWait<>(TestBase.getDriver());
-    wait.ignoring(NoSuchElementException.class);
+    WaitFor.time(2);
     return !element.isDisplayed();
   }
 

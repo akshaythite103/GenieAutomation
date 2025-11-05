@@ -55,7 +55,7 @@ public class TestBase {
       WebDriver localDriver = new ChromeDriver(options);
       driver.set(localDriver);
       localDriver.manage().deleteAllCookies();
-      localDriver.get(Environment.devUrl);
+      localDriver.get(Environment.prodUrl);
       //      localDriver.get(System.getProperty("url"));
       // Only for Jenkins Uncomment the above line and add the respective script in the jenkins
       WaitFor.time(5);
