@@ -47,7 +47,7 @@ public class TestBase {
       options.addArguments("--remote-allow-origins=*");
 
       if (osName.contains("linux")) {
-        //        options.addArguments("--headless");
+        options.addArguments("--headless");
         options.addArguments("user-agent=Mozilla/5.0 ... Chrome/103.0.0.0 Safari/537.36");
       }
 
