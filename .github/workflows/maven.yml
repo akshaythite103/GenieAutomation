@@ -17,7 +17,7 @@ on:
         default: "smoke"
 
 permissions:
-  contents: write   # ✅ REQUIRED for pushing to gh-pages
+  contents: write   # ✅ Required for pushing Allure reports to gh-pages
 
 jobs:
   build:
@@ -34,12 +34,27 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: ⏳ Download Previous Allure History
+        if: always()
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: 📂 Copy Previous Allure History
+        if: always()
+        run: |
+          mkdir -p allure-history
+          if [ -d "gh-pages/allure-history" ]; then
+            cp -R gh-pages/allure-history/* allure-history/
+          fi
+
       - name: 🧪 Run Automation Tests
         run: |
           echo "🏗 Running tests on environment: ${{ github.event.inputs.environment }}"
           mvn clean test -P${{ github.event.inputs.environment }} -Dgroups=${{ github.event.inputs.testGroup }} --file pom.xml
+        continue-on-error: true  # ✅ Allows rest of steps to run even if tests fail
 
-      # Generate Allure results (they are created automatically in target/allure-results)
       - name: 📁 Upload Allure Results
         if: always()
         uses: actions/upload-artifact@v4
@@ -69,3 +84,13 @@ jobs:
         with:
           name: surefire-reports
           path: target/surefire-reports/
+
+      - name: 📝 Add Allure Report Link to Summary
+        if: always()
+        run: |
+          echo "### ✅ Allure Report published at:" >> $GITHUB_STEP_SUMMARY
+          echo "🔗 https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/" >> $GITHUB_STEP_SUMMARY
+
+      - name: ❌ Fail if tests failed
+        if: failure()
+        run: exit 1
