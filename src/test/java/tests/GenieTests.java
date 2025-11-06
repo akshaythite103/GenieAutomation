@@ -310,12 +310,12 @@ public class GenieTests extends TestBase {
     genieChatPage.editQuestionForPngFile();
   }
 
-//  @Test(groups = {"fileUpload", "smoke"})
+  //  @Test(groups = {"fileUpload", "smoke"})
   public void verifyUploadFeatureFor10Files() {
     genieChatPage.uploadTenFiles();
   }
 
-//  @Test(groups = {"fileUpload", "smoke"})
+  //  @Test(groups = {"fileUpload", "smoke"})
   public void verifyUploadFeatureFor10FilesWithQuery() {
     genieChatPage.uploadTenFilesWithQuery();
   }
@@ -330,7 +330,7 @@ public class GenieTests extends TestBase {
     genieChatPage.uploadFiveFilesWithQuery();
   }
 
-//  @Test(groups = {"fileUpload", "smoke"})
+  //  @Test(groups = {"fileUpload", "smoke"})
   public void verifyUploadFeatureForMoreThan10Files() {
     genieChatPage.uploadMoreThanTenFiles();
   }
@@ -385,12 +385,12 @@ public class GenieTests extends TestBase {
     genieChatPage.generateResponseUsingAutoSelect();
   }
 
-//  @Test(groups = {"regenerateResponse", "fileUpload"})
+  //  @Test(groups = {"regenerateResponse", "fileUpload"})
   public void verifyRegenerateResponseForTenFilesUsingAutoSelectWithQuery() {
     genieChatPage.regenerateQueryForTenFilesWithQueryUsingAutoSelect();
   }
 
-//  @Test(groups = {"regenerateResponse", "fileUpload"})
+  //  @Test(groups = {"regenerateResponse", "fileUpload"})
   public void verifyRegenerateResponseForTenFilesUsingAutoSelectWithoutQuery() {
     genieChatPage.regenerateQueryForTenFilesWithoutQueryUsingAutoSelect();
   }
@@ -515,12 +515,12 @@ public class GenieTests extends TestBase {
     genieChatPage.regenerateQuestionForPngFileUsingAutoSelect();
   }
 
-//  @Test(groups = {"generateResponse", "fileUpload"})
+  //  @Test(groups = {"generateResponse", "fileUpload"})
   public void verifyGenerateResponseForTenFilesUsingAutoSelectWithQuery() {
     genieChatPage.generateQueryForTenFilesWithQueryUsingAutoSelect();
   }
 
-//  @Test(groups = {"generateResponse", "fileUpload"})
+  //  @Test(groups = {"generateResponse", "fileUpload"})
   public void verifyGenerateResponseForTenFilesUsingAutoSelectWithoutQuery() {
     genieChatPage.generateQueryForTenFilesWithoutQueryUsingAutoSelect();
   }
@@ -645,12 +645,12 @@ public class GenieTests extends TestBase {
     genieChatPage.generateQuestionForPngFileUsingAutoSelect();
   }
 
-//  @Test(groups = {"regenerateResponse", "fileUpload"})
+  //  @Test(groups = {"regenerateResponse", "fileUpload"})
   public void verifyRegenerateResponseForTenFilesUsingGpt5WithQuery() {
     genieChatPage.regenerateQueryForTenFilesWithQueryUsingGpt5();
   }
 
-//  @Test(groups = {"regenerateResponse", "fileUpload"})
+  //  @Test(groups = {"regenerateResponse", "fileUpload"})
   public void verifyRegenerateResponseForTenFilesUsingGpt5WithoutQuery() {
     genieChatPage.regenerateQueryForTenFilesWithoutQueryUsingGpt5();
   }
@@ -775,12 +775,12 @@ public class GenieTests extends TestBase {
     genieChatPage.regenerateQuestionForPngFileUsingGpt5();
   }
 
-//  @Test(groups = {"regenerateResponse", "fileUpload"})
+  //  @Test(groups = {"regenerateResponse", "fileUpload"})
   public void verifyRegenerateResponseForTenFilesUsingGpt4oWithQuery() {
     genieChatPage.regenerateQueryForTenFilesWithQueryUsingGpt4o();
   }
 
-//  @Test(groups = {"regenerateResponse", "fileUpload"})
+  //  @Test(groups = {"regenerateResponse", "fileUpload"})
   public void verifyRegenerateResponseForTenFilesUsingGpt4oWithoutQuery() {
     genieChatPage.regenerateQueryForTenFilesWithoutQueryUsingGpt4o();
   }
@@ -905,12 +905,12 @@ public class GenieTests extends TestBase {
     genieChatPage.regenerateQuestionForPngFileUsingGpt4o();
   }
 
-//  @Test(groups = {"regenerateResponse", "fileUpload"})
+  //  @Test(groups = {"regenerateResponse", "fileUpload"})
   public void verifyRegenerateResponseForTenFilesUsingGpt4oMiniWithQuery() {
     genieChatPage.regenerateQueryForTenFilesWithQueryUsingGpt4oMini();
   }
 
-//  @Test(groups = {"regenerateResponse", "fileUpload"})
+  //  @Test(groups = {"regenerateResponse", "fileUpload"})
   public void verifyRegenerateResponseForTenFilesUsingGpt4oMiniWithoutQuery() {
     genieChatPage.regenerateQueryForTenFilesWithoutQueryUsingGpt4oMini();
   }
@@ -1035,12 +1035,12 @@ public class GenieTests extends TestBase {
     genieChatPage.regenerateQuestionForPngFileUsingGpt4oMini();
   }
 
-//  @Test(groups = {"regenerateResponse", "fileUpload"})
+  //  @Test(groups = {"regenerateResponse", "fileUpload"})
   public void verifyRegenerateResponseForTenFilesUsingGpto3MiniWithQuery() {
     genieChatPage.regenerateQueryForTenFilesWithQueryUsingGpto3Mini();
   }
 
-//  @Test(groups = {"regenerateResponse", "fileUpload"})
+  //  @Test(groups = {"regenerateResponse", "fileUpload"})
   public void verifyRegenerateResponseForTenFilesUsingGpto3MiniWithoutQuery() {
     genieChatPage.regenerateQueryForTenFilesWithoutQueryUsingGpto3Mini();
   }
@@ -1165,12 +1165,12 @@ public class GenieTests extends TestBase {
     genieChatPage.regenerateQuestionForPngFileUsingGpto3Mini();
   }
 
-//  @Test(groups = {"generateResponse", "fileUpload"})
+  //  @Test(groups = {"generateResponse", "fileUpload"})
   public void verifyGenerateResponseForTenFilesUsingGpt5WithQuery() {
     genieChatPage.generateQueryForTenFilesWithQueryUsingGpt5();
   }
 
-//  @Test(groups = {"generateResponse", "fileUpload"})
+  //  @Test(groups = {"generateResponse", "fileUpload"})
   public void verifyGenerateResponseForTenFilesUsingGpt5WithoutQuery() {
     genieChatPage.generateQueryForTenFilesWithoutQueryUsingGpt5();
   }
@@ -1295,12 +1295,12 @@ public class GenieTests extends TestBase {
     genieChatPage.generateQuestionForPngFileUsingGpt5();
   }
 
-//  @Test(groups = {"generateResponse", "fileUpload"})
+  //  @Test(groups = {"generateResponse", "fileUpload"})
   public void verifyGenerateResponseForTenFilesUsingGpt4oWithQuery() {
     genieChatPage.generateQueryForTenFilesWithQueryUsingGpt4o();
   }
 
-//  @Test(groups = {"generateResponse", "fileUpload"})
+  //  @Test(groups = {"generateResponse", "fileUpload"})
   public void verifyGenerateResponseForTenFilesUsingGpt4oWithoutQuery() {
     genieChatPage.generateQueryForTenFilesWithoutQueryUsingGpt4o();
   }
@@ -1425,12 +1425,12 @@ public class GenieTests extends TestBase {
     genieChatPage.generateQuestionForPngFileUsingGpt4o();
   }
 
-//  @Test(groups = {"generateResponse", "fileUpload"})
+  //  @Test(groups = {"generateResponse", "fileUpload"})
   public void verifyGenerateResponseForTenFilesUsingGpt4oMiniWithQuery() {
     genieChatPage.generateQueryForTenFilesWithQueryUsingGpt4oMini();
   }
 
-//  @Test(groups = {"generateResponse", "fileUpload"})
+  //  @Test(groups = {"generateResponse", "fileUpload"})
   public void verifyGenerateResponseForTenFilesUsingGpt4oMiniWithoutQuery() {
     genieChatPage.generateQueryForTenFilesWithoutQueryUsingGpt4oMini();
   }
@@ -1555,12 +1555,12 @@ public class GenieTests extends TestBase {
     genieChatPage.generateQuestionForPngFileUsingGpt4oMini();
   }
 
-//  @Test(groups = {"generateResponse", "fileUpload"})
+  //  @Test(groups = {"generateResponse", "fileUpload"})
   public void verifyGenerateResponseForTenFilesUsingGpto3MiniWithQuery() {
     genieChatPage.generateQueryForTenFilesWithQueryUsingGpto3Mini();
   }
 
-//  @Test(groups = {"generateResponse", "fileUpload"})
+  //  @Test(groups = {"generateResponse", "fileUpload"})
   public void verifyGenerateResponseForTenFilesUsingGpto3MiniWithoutQuery() {
     genieChatPage.generateQueryForTenFilesWithoutQueryUsingGpto3Mini();
   }
