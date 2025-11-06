@@ -23,7 +23,7 @@ public class GenieTests extends TestBase {
     loginPage = new LoginPage();
     loginPage.login();
     genieChatPage = new GenieChatPage();
-    genieChatPage.clickOnSkipIntroButton();
+    genieChatPage.clickOnSkipButtonOfInterfaceTour();
     genieChatPage.verifyGenieDashboard();
     userGuidePage = new UserGuidePage();
   }
@@ -1693,6 +1693,16 @@ public class GenieTests extends TestBase {
   @Test(groups = "smoke")
   public void verifyReadAloudUsinConsoleLog() {
     genieChatPage.verifyReadAloudUsingConsoleLog();
+  }
+
+  @Test(groups = "smoke")
+  public void verifyInterfaceTour() {
+    genieChatPage.verifyInterfaceTour();
+  }
+
+  @Test(groups = "smoke")
+  public void verifyBackButtonInterfaceTour() {
+    genieChatPage.verifyBackButtonInterfaceTour();
   }
 
   //  @AfterMethod(groups = {"smoke", "fileUpload", "generateResponse", "regenerateResponse"})

@@ -96,7 +96,8 @@ public class LoginPage extends TestBase {
       clickOnNextButton();
       enterPassword(Environment.password);
       clickOnNextButton();
-      WaitFor.time(2);
+      WaitFor.time(1);
+      WaitFor.elementToBeClickable(uplGenieLogo);
       verifyLoginSuccessToaster();
     }
     WaitFor.elementToBeClickable(uplGenieLogo);

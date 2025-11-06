@@ -47,7 +47,7 @@ public class TestBase {
       options.addArguments("--remote-allow-origins=*");
 
       if (osName.contains("linux")) {
-        options.addArguments("--headless");
+//        options.addArguments("--headless");
         options.addArguments("user-agent=Mozilla/5.0 ... Chrome/103.0.0.0 Safari/537.36");
       }
 
@@ -61,8 +61,7 @@ public class TestBase {
       // Only for Jenkins Uncomment the above line and add the respective script in the jenkins
 
       localDriver.get(System.getProperty("base.url"));
-      // Only for GitHub Actions Uncomment the above line and add the respective script in the
-      // pom.xml and .github/workflows/maven.yml
+      // Only for GitHub Actions Uncomment the above line and add the respective script in thepom.xml and .github/workflows/maven.yml
       WaitFor.time(5);
     }
   }

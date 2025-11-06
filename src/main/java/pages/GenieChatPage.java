@@ -166,10 +166,19 @@ public class GenieChatPage extends TestBase {
   WebElement readAloudIcon;
 
   @FindBy(css = "button[data-test-id='button-skip']")
-  WebElement skipIntroButton;
+  WebElement skipButtonOfInterfaceTour;
 
   @FindBy(xpath = "//span[text()='Video Tutorials']")
   WebElement videoTutorials;
+
+  @FindBy(xpath = "//span[text()='Interface Tour']")
+  WebElement interfaceTour;
+
+  @FindBy(css = "button[data-test-id='button-primary']")
+  WebElement nextButtonOfInterfaceTour;
+
+  @FindBy(css = "button[data-test-id='button-back']")
+  WebElement backButtonOfInterfaceTour;
 
   public void verifyGenieDashboard() {
     WaitFor.time(3);
@@ -3691,9 +3700,179 @@ public class GenieChatPage extends TestBase {
     }
   }
 
-  public void clickOnSkipIntroButton() {
+  public void clickOnSkipButtonOfInterfaceTour() {
     WaitFor.time(1);
-    WaitFor.elementToBeClickable(skipIntroButton);
-    TestUtils.clickUsingJavaScriptExecutor(skipIntroButton, "Clicked on the 'Skip' intro button.");
+    WaitFor.elementToBeClickable(skipButtonOfInterfaceTour);
+    TestUtils.clickUsingJavaScriptExecutor(
+        skipButtonOfInterfaceTour, "Clicked on the 'Skip' button of Interface Tour.");
+  }
+
+  public void verifyInterfaceTour() {
+    WaitFor.time(1);
+    clickOnUserGuide();
+    clickOnInterfaceTourOption();
+    verifyChatPoup();
+    clickOnNextButtonOfInterfaceTour();
+    verifyUploadDocumentPopup();
+    clickOnNextButtonOfInterfaceTour();
+    verifyModelSelectionPopup();
+    clickOnNextButtonOfInterfaceTour();
+    verifyTranslateAIPopup();
+    clickOnNextButtonOfInterfaceTour();
+    verifyHistoryPopup();
+    clickOnEndButtonOfInterfaceTour();
+  }
+
+  public void verifyChatPoup() {
+    WaitFor.time(1);
+    WebElement popupHeader = TestBase.getDriver().findElement(By.xpath("//h1"));
+    String expectedHeader = "Chat";
+    String actualHeader = popupHeader.getText();
+    Assert.assertEquals(actualHeader, expectedHeader);
+    WebElement popupText =
+        TestBase.getDriver().findElement(By.xpath("//h1/following-sibling::div"));
+    String expectedText = "Start a conversation - just type and let UPL Genie do the thinking.";
+    String actualText = popupText.getText();
+    Assert.assertEquals(actualText, expectedText);
+    TestUtils.isDisplayed(
+        skipButtonOfInterfaceTour, "Skip Button of Interface tour is displayed on Chat popup.");
+    TestUtils.isDisplayed(
+        nextButtonOfInterfaceTour, "Next Button of Interface tour is displayed on Chat popup.");
+  }
+
+  public void clickOnNextButtonOfInterfaceTour() {
+    WaitFor.time(1);
+    WaitFor.elementToBeClickable(nextButtonOfInterfaceTour);
+    TestUtils.clickUsingJavaScriptExecutor(
+        nextButtonOfInterfaceTour, "Clicked on the 'Next' button of Interface Tour.");
+  }
+
+  public void clickOnEndButtonOfInterfaceTour() {
+    WaitFor.time(1);
+    WaitFor.elementToBeClickable(nextButtonOfInterfaceTour);
+    TestUtils.clickUsingJavaScriptExecutor(
+        nextButtonOfInterfaceTour, "Clicked on the 'End' button of Interface Tour.");
+  }
+
+  public void clickOnInterfaceTourOption() {
+    WaitFor.time(1);
+    WaitFor.elementToBeClickable(interfaceTour);
+    TestUtils.click(interfaceTour, "Clicked on 'Interface Tour.");
+  }
+
+  public void clickOnBackButtonOfInterfaceTour() {
+    WaitFor.time(1);
+    WaitFor.elementToBeClickable(backButtonOfInterfaceTour);
+    TestUtils.clickUsingJavaScriptExecutor(
+        backButtonOfInterfaceTour, "Clicked on the 'Back' button of Interface Tour.");
+  }
+
+  public void verifyUploadDocumentPopup() {
+    WaitFor.time(1);
+    WebElement popupHeader = TestBase.getDriver().findElement(By.xpath("//h1"));
+    String expectedHeader = "Document Upload";
+    String actualHeader = popupHeader.getText();
+    Assert.assertEquals(actualHeader, expectedHeader);
+    WebElement popupText =
+        TestBase.getDriver().findElement(By.xpath("//h1/following-sibling::div"));
+    String expectedText = "Upload files to get instant summaries, insights, or answers.";
+    String actualText = popupText.getText();
+    Assert.assertEquals(actualText, expectedText);
+    TestUtils.isDisplayed(
+        skipButtonOfInterfaceTour,
+        "Skip Button of Interface tour is displayed on Upload Document popup.");
+    TestUtils.isDisplayed(
+        nextButtonOfInterfaceTour,
+        "Next Button of Interface tour is displayed on Upload Document popup.");
+    TestUtils.isDisplayed(
+        backButtonOfInterfaceTour,
+        "Back Button of Interface tour is displayed on Upload Document popup.");
+  }
+
+  public void verifyModelSelectionPopup() {
+    WaitFor.time(1);
+    WebElement popupHeader = TestBase.getDriver().findElement(By.xpath("//h1"));
+    String expectedHeader = "Model Select";
+    String actualHeader = popupHeader.getText();
+    Assert.assertEquals(actualHeader, expectedHeader);
+    WebElement popupText =
+        TestBase.getDriver().findElement(By.xpath("//h1/following-sibling::div"));
+    String expectedText = "Choose the right AI model for your task.";
+    String actualText = popupText.getText();
+    Assert.assertEquals(actualText, expectedText);
+    TestUtils.isDisplayed(
+        skipButtonOfInterfaceTour,
+        "Skip Button of Interface tour is displayed on Model Selection popup.");
+    TestUtils.isDisplayed(
+        nextButtonOfInterfaceTour,
+        "Next Button of Interface tour is displayed on Model Selection popup.");
+    TestUtils.isDisplayed(
+        backButtonOfInterfaceTour,
+        "Back Button of Interface tour is displayed on Model Selection popup.");
+  }
+
+  public void verifyTranslateAIPopup() {
+    WaitFor.time(1);
+    WebElement popupHeader = TestBase.getDriver().findElement(By.xpath("//h1"));
+    String expectedHeader = "Translate AI";
+    String actualHeader = popupHeader.getText();
+    Assert.assertEquals(actualHeader, expectedHeader);
+    WebElement popupText =
+        TestBase.getDriver().findElement(By.xpath("//h1/following-sibling::div"));
+    String expectedText =
+        "Easily translate any text or uploaded document into multiple languages with AI.";
+    String actualText = popupText.getText();
+    Assert.assertEquals(actualText, expectedText);
+    TestUtils.isDisplayed(
+        skipButtonOfInterfaceTour,
+        "Skip Button of Interface tour is displayed on TranslateAI popup.");
+    TestUtils.isDisplayed(
+        nextButtonOfInterfaceTour,
+        "Next Button of Interface tour is displayed on TranslateAI popup.");
+    TestUtils.isDisplayed(
+        backButtonOfInterfaceTour,
+        "Back Button of Interface tour is displayed on Translate AI popup.");
+  }
+
+  public void verifyHistoryPopup() {
+    WaitFor.time(1);
+    WebElement popupHeader = TestBase.getDriver().findElement(By.xpath("//h1"));
+    String expectedHeader = "History";
+    String actualHeader = popupHeader.getText();
+    Assert.assertEquals(actualHeader, expectedHeader);
+    WebElement popupText =
+        TestBase.getDriver().findElement(By.xpath("//h1/following-sibling::div"));
+    String expectedText = "Revisit past chats anytime - your conversation history is saved.";
+    String actualText = popupText.getText();
+    Assert.assertEquals(actualText, expectedText);
+    TestUtils.isDisplayed(
+        nextButtonOfInterfaceTour, "End Button of Interface tour is displayed on History popup.");
+    TestUtils.isDisplayed(
+        backButtonOfInterfaceTour,
+        "Back Button of Interface tour is displayed on History AI popup.");
+  }
+
+  public void verifyBackButtonInterfaceTour() {
+    WaitFor.time(1);
+    clickOnUserGuide();
+    clickOnInterfaceTourOption();
+    verifyChatPoup();
+    clickOnNextButtonOfInterfaceTour();
+    verifyUploadDocumentPopup();
+    clickOnNextButtonOfInterfaceTour();
+    verifyModelSelectionPopup();
+    clickOnNextButtonOfInterfaceTour();
+    verifyTranslateAIPopup();
+    clickOnNextButtonOfInterfaceTour();
+    verifyHistoryPopup();
+    clickOnBackButtonOfInterfaceTour();
+    verifyTranslateAIPopup();
+    clickOnBackButtonOfInterfaceTour();
+    verifyModelSelectionPopup();
+    clickOnBackButtonOfInterfaceTour();
+    verifyUploadDocumentPopup();
+    clickOnBackButtonOfInterfaceTour();
+    verifyChatPoup();
+    clickOnSkipButtonOfInterfaceTour();
   }
 }
