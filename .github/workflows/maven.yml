@@ -17,7 +17,7 @@ on:
         default: "smoke"
 
 permissions:
-  contents: write
+  contents: write   # Required for pushing Allure report to gh-pages
 
 jobs:
   build:
@@ -40,16 +40,25 @@ jobs:
           mvn clean test -P${{ github.event.inputs.environment }} \
               -Dgroups=${{ github.event.inputs.testGroup }} \
               --file pom.xml
-        continue-on-error: true
+        continue-on-error: true  # Continue pipeline even if tests fail
 
-      # ✅ Fixed Allure installation (works on Ubuntu 24.04)
+      # ✅ Dynamic Allure Installation (no hardcoding)
       - name: ⚙️ Install Allure CLI
         if: always()
         run: |
-          wget https://github.com/allure-framework/allure2/releases/latest/download/allure-2.29.0.tgz
-          tar -zxvf allure-2.29.0.tgz
-          sudo mv allure-2.29.0 /opt/allure
+          echo "🔍 Fetching latest Allure release..."
+          LATEST_URL=$(curl -s https://api.github.com/repos/allure-framework/allure2/releases/latest \
+            | grep "browser_download_url" \
+            | grep "tgz" \
+            | cut -d '"' -f 4)
+          echo "📦 Downloading Allure from: $LATEST_URL"
+
+          wget $LATEST_URL -O allure.tgz
+          tar -zxvf allure.tgz
+          ALURE_DIR=$(tar -tzf allure.tgz | head -1 | cut -f1 -d"/")
+          sudo mv "$ALURE_DIR" /opt/allure
           sudo ln -s /opt/allure/bin/allure /usr/bin/allure
+          echo "✅ Installed Allure version:"
           allure --version
 
       - name: 🧷 Generate Allure Report
