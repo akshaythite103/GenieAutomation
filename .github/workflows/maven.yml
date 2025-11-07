@@ -2,6 +2,19 @@ name: Java CI with Maven - Run Smoke Suite and Generate Allure Report
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select environment (e.g., dev, qa, prod)"
+        required: true
+        default: "dev"
+        type: choice
+        options:
+          - dev
+          - prod
+      testGroup:
+        description: "Enter TestNG group (e.g., smoke, regression)"
+        required: true
+        default: "smoke"
 
 permissions:
   contents: read
@@ -21,47 +34,31 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: 🧪 Run Smoke Tests
+      - name: 🧪 Run TestNG Suite
         run: |
-          echo "🏗 Running Smoke Tests"
-          mvn clean test -Dgroups=smoke --file pom.xml
-        continue-on-error: true
+          echo "🏗 Running tests on environment: ${{ github.event.inputs.environment }}"
+          echo "🔹 Test group: ${{ github.event.inputs.testGroup }}"
+          mvn clean test \
+            -P${{ github.event.inputs.environment }} \
+            -Dgroups=${{ github.event.inputs.testGroup }} \
+            --file pom.xml
+        continue-on-error: true  # continue to upload allure results even if tests fail
 
-      - name: ⚙️ Install Allure CLI (Latest)
-        if: always()
-        run: |
-          echo "🔍 Fetching latest Allure release..."
-          LATEST_URL=$(curl -s https://api.github.com/repos/allure-framework/allure2/releases/latest \
-            | grep "browser_download_url" \
-            | grep "tgz" \
-            | cut -d '"' -f 4)
-          echo "📦 Downloading Allure from: $LATEST_URL"
-          wget $LATEST_URL -O allure.tgz
-          tar -zxvf allure.tgz
-          ALURE_DIR=$(tar -tzf allure.tgz | head -1 | cut -f1 -d"/")
-          sudo mv "$ALURE_DIR" /opt/allure
-          sudo ln -s /opt/allure/bin/allure /usr/bin/allure
-          allure --version
-
-      - name: 🧷 Generate Allure Report
-        if: always()
-        run: |
-          mkdir -p allure-report
-          allure generate target/allure-results --clean -o allure-report
-
-      - name: 💾 Upload Allure Report Artifact (Downloadable ZIP)
+      - name: 💾 Upload Allure Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: allure-report
-          path: allure-report/
+          name: allure-results
+          path: target/allure-results/
           retention-days: 7
 
       - name: 📝 Add Download Info
         if: always()
         run: |
-          echo "### ✅ Allure Report Ready for Download" >> $GITHUB_STEP_SUMMARY
-          echo "- 💾 Go to 'Artifacts' section of this workflow → Download **allure-report**" >> $GITHUB_STEP_SUMMARY
+          echo "### ✅ Allure Results Ready for Download" >> $GITHUB_STEP_SUMMARY
+          echo "- 💾 Go to 'Artifacts' section → Download **allure-results**" >> $GITHUB_STEP_SUMMARY
+          echo "- 🌍 Environment: ${{ github.event.inputs.environment }}" >> $GITHUB_STEP_SUMMARY
+          echo "- 🧪 Test Group: ${{ github.event.inputs.testGroup }}" >> $GITHUB_STEP_SUMMARY
 
       - name: ❌ Fail if tests failed
         if: failure()
