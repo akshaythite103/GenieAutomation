@@ -16,8 +16,8 @@ public class GenieTests extends TestBase {
   GenieChatPage genieChatPage;
   UserGuidePage userGuidePage;
 
-  //  @BeforeMethod(groups = {"smoke", "fileUpload", "generateResponse","regenerateResponse"})
-  @BeforeMethod(alwaysRun = true)
+  @BeforeMethod(groups = {"smoke", "fileUpload", "generateResponse", "regenerateResponse"})
+  //  @BeforeMethod(alwaysRun = true)
   public void startUp() {
     TestBase.initialization();
     loginPage = new LoginPage();
@@ -78,17 +78,17 @@ public class GenieTests extends TestBase {
 
   @Test(groups = "smoke")
   public void verifyLikeResponseFeature() {
-    genieChatPage.clickOnResponseLikeButton();
+    genieChatPage.verifyResponseLikeButton();
   }
 
   @Test(groups = "smoke")
   public void verifyDislikeResponseFeature() {
-    genieChatPage.clickOnResponseDisLikeButton();
+    genieChatPage.verifyResponseDisLikeButton();
   }
 
   @Test(groups = "smoke")
   public void verifyCopyResponseFeature() {
-    genieChatPage.clickOnResponseCopyButton();
+    genieChatPage.verifyResponseCopyButton();
   }
 
   @Test(groups = "smoke")
@@ -1691,7 +1691,7 @@ public class GenieTests extends TestBase {
   }
 
   @Test(groups = "smoke")
-  public void verifyReadAloudUsinConsoleLog() {
+  public void verifyReadAloudUsingConsoleLog() {
     genieChatPage.verifyReadAloudUsingConsoleLog();
   }
 
@@ -1705,8 +1705,8 @@ public class GenieTests extends TestBase {
     genieChatPage.verifyBackButtonInterfaceTour();
   }
 
-  //  @AfterMethod(groups = {"smoke", "fileUpload", "generateResponse", "regenerateResponse"})
-  @AfterMethod(alwaysRun = true)
+  @AfterMethod(groups = {"smoke", "fileUpload", "generateResponse", "regenerateResponse"})
+  //  @AfterMethod(alwaysRun = true)
   public void tearDown() {
     TestBase.quitDriver();
   }

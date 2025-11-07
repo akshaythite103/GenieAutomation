@@ -18,10 +18,10 @@ public class UserGuidePage {
   @FindBy(css = "button.back-btn")
   WebElement backButton;
 
-  @FindBy(xpath = "//span[text()='UPL Genie User Guide']")
+  @FindBy(xpath = "//*[text()='UPL Genie User Guide']")
   WebElement userGuide;
 
-  @FindBy(xpath = "//span[text()='FAQs']")
+  @FindBy(xpath = "//*[text()='FAQs']")
   WebElement faqs;
 
   @FindBy(css = "button.submit-policy-btn")

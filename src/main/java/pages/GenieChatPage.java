@@ -374,13 +374,34 @@ public class GenieChatPage extends TestBase {
     assertEquals(actualResponse, expectedResponse);
   }
 
-  public void clickOnResponseLikeButton() {
+  public void verifyResponseLikeButton() {
     WaitFor.time(1);
     enterQueryInSearchBox("Hi");
     WaitFor.time(1);
     verifyResponse();
+    clickOnResponseLikeButton();
+    WaitFor.time(1);
+    String expectedSuccessToaster = "Feedback submitted successfully";
+    WebElement successToaster =
+        TestBase.getDriver()
+            .findElement(By.xpath("//div[text()='Feedback submitted successfully']"));
+    String actualSuccessToaster = successToaster.getText();
+    assertEquals(actualSuccessToaster, expectedSuccessToaster);
+    deleteCurrentlyVisitedChat();
+  }
+
+  public void clickOnResponseLikeButton() {
+    WaitFor.time(1);
     WaitFor.elementToBeClickable(responseLikeButton);
     TestUtils.click(responseLikeButton, "Liked the Response");
+  }
+
+  public void verifyResponseDisLikeButton() {
+    WaitFor.time(1);
+    enterQueryInSearchBox("Hi");
+    WaitFor.time(1);
+    verifyResponse();
+    clickOnResponseDisLikeButton();
     WaitFor.time(1);
     String expectedSuccessToaster = "Feedback submitted successfully";
     WebElement successToaster =
@@ -393,28 +414,16 @@ public class GenieChatPage extends TestBase {
 
   public void clickOnResponseDisLikeButton() {
     WaitFor.time(1);
-    enterQueryInSearchBox("Hi");
-    WaitFor.time(1);
     WaitFor.elementToBeClickable(responseDislikeButton);
-    verifyResponse();
     TestUtils.click(responseDislikeButton, "Disliked the Response");
-    WaitFor.time(1);
-    String expectedSuccessToaster = "Feedback submitted successfully";
-    WebElement successToaster =
-        TestBase.getDriver()
-            .findElement(By.xpath("//div[text()='Feedback submitted successfully']"));
-    String actualSuccessToaster = successToaster.getText();
-    assertEquals(actualSuccessToaster, expectedSuccessToaster);
-    deleteCurrentlyVisitedChat();
   }
 
-  public void clickOnResponseCopyButton() {
+  public void verifyResponseCopyButton() {
     WaitFor.time(1);
     enterQueryInSearchBox("Hi");
     WaitFor.time(1);
-    WaitFor.elementToBeClickable(responseCopyButton);
     verifyResponse();
-    TestUtils.click(responseCopyButton, "Copied the Response");
+    clickOnResponseCopyButton();
     WaitFor.time(1);
     String expectedSuccessToaster = "Copied to clipboard!";
     WebElement successToaster =
@@ -422,6 +431,12 @@ public class GenieChatPage extends TestBase {
     String actualSuccessToaster = successToaster.getText();
     assertEquals(actualSuccessToaster, expectedSuccessToaster);
     deleteCurrentlyVisitedChat();
+  }
+
+  public void clickOnResponseCopyButton() {
+    WaitFor.time(1);
+    WaitFor.elementToBeClickable(responseCopyButton);
+    TestUtils.click(responseCopyButton, "Copied the Response");
   }
 
   public void deleteCurrentlyVisitedChat() {
@@ -3678,7 +3693,10 @@ public class GenieChatPage extends TestBase {
     enterQueryInSearchBox("How you can help me?");
     verifyResponse();
     clickOnReadAloudIcon();
-    WaitFor.time(5);
+    WaitFor.time(10);
+    clickOnResponseLikeButton();
+    clickOnResponseDisLikeButton();
+    clickOnResponseCopyButton();
     clickOnReadAloudIcon();
     LogEntries logs = TestBase.getDriver().manage().logs().get(LogType.BROWSER);
     boolean ttsErrorDetected = false;
