@@ -17,7 +17,7 @@ on:
         default: "smoke"
 
 permissions:
-  contents: write   # Required for pushing Allure report to gh-pages
+  contents: write
 
 jobs:
   build:
@@ -40,9 +40,9 @@ jobs:
           mvn clean test -P${{ github.event.inputs.environment }} \
               -Dgroups=${{ github.event.inputs.testGroup }} \
               --file pom.xml
-        continue-on-error: true  # Continue pipeline even if tests fail
+        continue-on-error: true
 
-      # ✅ Dynamic Allure Installation (no hardcoding)
+      # ✅ Dynamic Allure CLI Installation
       - name: ⚙️ Install Allure CLI
         if: always()
         run: |
@@ -52,13 +52,11 @@ jobs:
             | grep "tgz" \
             | cut -d '"' -f 4)
           echo "📦 Downloading Allure from: $LATEST_URL"
-
           wget $LATEST_URL -O allure.tgz
           tar -zxvf allure.tgz
           ALURE_DIR=$(tar -tzf allure.tgz | head -1 | cut -f1 -d"/")
           sudo mv "$ALURE_DIR" /opt/allure
           sudo ln -s /opt/allure/bin/allure /usr/bin/allure
-          echo "✅ Installed Allure version:"
           allure --version
 
       - name: 🧷 Generate Allure Report
@@ -66,6 +64,7 @@ jobs:
         run: |
           allure generate target/allure-results --clean -o allure-report
 
+      # 🌐 Deploy Allure Report (for public web link)
       - name: 🌐 Deploy Allure Report to GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
@@ -74,18 +73,28 @@ jobs:
           publish_branch: gh-pages
           publish_dir: allure-report
 
-      - name: 📊 Upload Surefire Test Reports
+      # 💾 Upload Allure Report Artifact (for manual download)
+      - name: 💾 Upload Allure Report Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report/
+          retention-days: 7  # Optional: keep for 7 days
+
+      - name: 📊 Upload Surefire Reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: surefire-reports
           path: target/surefire-reports/
 
-      - name: 📝 Add Allure Report Link to Summary
+      - name: 📝 Add Allure Report Links to Summary
         if: always()
         run: |
-          echo "### ✅ Allure Report Published At:" >> $GITHUB_STEP_SUMMARY
-          echo "🔗 https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/" >> $GITHUB_STEP_SUMMARY
+          echo "### ✅ Allure Report Links" >> $GITHUB_STEP_SUMMARY
+          echo "- 🌐 **View Online:** https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/" >> $GITHUB_STEP_SUMMARY
+          echo "- 💾 **Download ZIP:** Go to 'Artifacts' section of this run → Download 'allure-report'" >> $GITHUB_STEP_SUMMARY
 
       - name: ❌ Fail if tests failed
         if: failure()
