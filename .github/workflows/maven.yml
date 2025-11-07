@@ -38,6 +38,12 @@ jobs:
         run: |
           echo "🏗 Running tests on environment: ${{ github.event.inputs.environment }}"
           echo "🔹 Test group: ${{ github.event.inputs.testGroup }}"
+          
+          if [ "${{ github.event.inputs.environment }}" = "dev" ]; then
+            BASE_URL="https://dev.uplgenie.upl-ltd.com/"
+          elif [ "${{ github.event.inputs.environment }}" = "prod" ]; then
+            BASE_URL="https://uplgenie.upl-ltd.com/"
+          
           mvn clean test \
             -P${{ github.event.inputs.environment }} \
             -Dgroups=${{ github.event.inputs.testGroup }} \
