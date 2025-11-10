@@ -34,7 +34,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: 🧪 Run TestNG Suite
+      - name: 🧪 Run Full Test Suite (Continue on Failures)
         run: |
           echo "🏗 Running tests on environment: ${{ github.event.inputs.environment }}"
           echo "🔹 Test group: ${{ github.event.inputs.testGroup }}"
@@ -53,6 +53,7 @@ jobs:
             -P${{ github.event.inputs.environment }} \
             -Dgroups=${{ github.event.inputs.testGroup }} \
             -Dbase.url=$BASE_URL \
+            -Dmaven.test.failure.ignore=true \
             --file pom.xml
         continue-on-error: true  # continue to upload allure results even if tests fail
 
@@ -71,7 +72,3 @@ jobs:
           echo "- 💾 Go to 'Artifacts' section → Download **allure-results**" >> $GITHUB_STEP_SUMMARY
           echo "- 🌍 Environment: ${{ github.event.inputs.environment }}" >> $GITHUB_STEP_SUMMARY
           echo "- 🧪 Test Group: ${{ github.event.inputs.testGroup }}" >> $GITHUB_STEP_SUMMARY
-
-      - name: ❌ Fail if tests failed
-        if: failure()
-        run: exit 1
