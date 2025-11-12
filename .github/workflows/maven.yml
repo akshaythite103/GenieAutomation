@@ -34,7 +34,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: 🧪 Run Full Test Suite (Continue on Failures)
+      - name: 🧪 Run Full Smoke Test Suite (Continue on Failures)
         run: |
           echo "🏗 Running tests on environment: ${{ github.event.inputs.environment }}"
           echo "🔹 Test group: ${{ github.event.inputs.testGroup }}"
