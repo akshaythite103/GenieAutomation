@@ -78,8 +78,9 @@ public class TestBase {
       } else {
         LogUtils.warn(
             "⚠️ base.url is not defined! Please set it in config.properties or via -Dbase.url");
+        //        LogUtils.info("Hitting URL from configuration.");
         //        localDriver.get(Environment.devUrl);
-        // Comment out above line. Change env url accordingly used only for locally
+        // Comment out above 2 lines. Change env url accordingly used only for locally
       }
 
       WaitFor.time(5);

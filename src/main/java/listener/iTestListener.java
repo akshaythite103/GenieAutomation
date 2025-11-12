@@ -61,7 +61,7 @@ public class iTestListener implements ITestListener, IConfigurationListener {
   @Override
   public void onTestSkipped(ITestResult result) {
     System.out.println("⚠️ The name of SKIPPED testcase is: " + result.getName());
-    TestUtils.getScreenshotUsingAshot(result.getMethod().getMethodName());
+    //    TestUtils.getScreenshotUsingAshot(result.getMethod().getMethodName());
 
     WebDriver driver = TestBase.getDriver();
     attachScreenshot(driver);

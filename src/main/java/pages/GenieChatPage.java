@@ -73,10 +73,10 @@ public class GenieChatPage extends TestBase {
   @FindBy(css = "button.yes-btn")
   WebElement yesButtonLogoutPopup;
 
-  @FindBy(css = "button.like-button")
+  @FindBy(css = "img[alt='like icon']")
   WebElement responseLikeButton;
 
-  @FindBy(css = "button.dislike-button ")
+  @FindBy(css = "img[alt='dislike icon']")
   WebElement responseDislikeButton;
 
   @FindBy(css = "img[alt='copy icon']")
@@ -3704,7 +3704,7 @@ public class GenieChatPage extends TestBase {
     for (LogEntry entry : logs) {
       System.out.println(entry.getMessage());
       WaitFor.time(2);
-      if (entry.getMessage().contains("Text-to-Speech error")) {
+      if (entry.getMessage().contains("Text-to-speech error")) {
         ttsErrorDetected = true;
         System.out.println("Detected Text-to-Speech error in console logs.");
       }

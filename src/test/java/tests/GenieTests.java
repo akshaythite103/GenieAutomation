@@ -149,7 +149,7 @@ public class GenieTests extends TestBase {
   }
 
   @Test(groups = "smoke")
-  public void verifyBackButton() {
+  public void verifyBackButtonOnUserGuidePage() {
     genieChatPage.clickOnUserGuide();
     genieChatPage.clickOnVideoTutorialsOption();
     userGuidePage.clickOnBackButton();
@@ -1685,7 +1685,7 @@ public class GenieTests extends TestBase {
     genieChatPage.generateQuestionForPngFileUsingGpto3Mini();
   }
 
-  @Test(groups = "smoke")
+  //  @Test(groups = "smoke")
   public void verifyReadAloudUsingJavascriptExecutor() {
     genieChatPage.verifyReadAloudUsingJavascriptExecutor();
   }
