@@ -196,7 +196,7 @@ public class GenieTests extends TestBase {
   }
 
   @Test(groups = {"fileUpload", "smoke"})
-  public void verifyMaxFileUploadFailedToasterMessage() {
+  public void verifyMaxSizeFileUploadFailedToasterMessage() {
     genieChatPage.uploadMaxFileSupportedFile();
   }
 
