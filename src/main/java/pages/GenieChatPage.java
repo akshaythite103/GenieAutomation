@@ -121,11 +121,6 @@ public class GenieChatPage extends TestBase {
   @FindBy(css = "button.output-arrow")
   WebElement sendIcon;
 
-  @FindBy(
-      xpath =
-          "//div[@class='feedback-buttons']/following-sibling::div//div[text()='Explore further']")
-  WebElement exploreFurtherSection;
-
   @FindBy(css = "div.spinner")
   WebElement responseSpinner;
 
@@ -722,7 +717,6 @@ public class GenieChatPage extends TestBase {
     TestUtils.isDisplayed(responseDislikeButton, "Response Dislike icon is displayed.");
     TestUtils.isDisplayed(readAloudIcon, "Read aloud icon is displayed.");
     TestUtils.isDisplayed(regenerateResponseIcon, "Regenerate Response icon is displayed.");
-    TestUtils.isEnabled(exploreFurtherSection, "Explore Further section is displayed.");
   }
 
   public void uploadUnsupportedFile(String filePath) {

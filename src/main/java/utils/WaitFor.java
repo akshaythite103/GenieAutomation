@@ -30,6 +30,7 @@ public class WaitFor extends TestBase {
   }
 
   public static void elementToBePresent(WebElement element) {
+    element.isEnabled();
     wait.ignoring(NoSuchElementException.class, ElementClickInterceptedException.class);
   }
 
